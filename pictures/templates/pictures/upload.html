@@ -1,0 +1,20 @@
+{% extends 'pictures/base.html' %}
+
+{% block content %}
+<div class="text-center">
+    <h1 class="h2">{{title}}</h1>
+    <form action="{% url 'add' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+        <div class="form-error">{{ form.non_field_errors }}</div>
+
+{% for f in form %}
+        <div class="form-group my-3">
+            <label for="{{ f.id_for_label }}"><p class="lead">{{f.label}}</label>
+            <p>{{ f }}</p>
+            <div class="form-error">{{ f.errors }}</div>
+        </div>
+{% endfor %}
+        <button type="submit" class="btn btn-primary">Добавить</button>
+    </form>
+{% endblock %}
+</div>

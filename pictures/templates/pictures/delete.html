@@ -1,0 +1,16 @@
+{% extends 'pictures/base.html' %}
+
+{% block content %}
+  <div class="text-center" style="max-width: 100%">
+    <h1 class="h2">Подтвердите удаление картинки "{{ object }}"</h1>
+    <img class="d-block mx-auto mb-4 my-3" src="{{object.photo.url}}" alt="" style="max-height: 300px; object-fit: cover;">
+    <div class="col-lg-6 mx-auto">
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+        <form method="post">{% csrf_token %}
+          <input type="submit" class="btn btn-outline-danger btn-lg px-4" value="Удалить">
+        </form>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

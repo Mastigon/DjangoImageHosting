@@ -1,0 +1,30 @@
+{% extends 'pictures/base.html' %}
+
+
+{% block content %}
+{% if posts|length == 0 %}
+        <h1 class="display-4" align="center"><p>Картинок пока нет :(<p> Будьте первым!</h1>
+{% endif %}
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-md-4 g-3">
+{% for p in posts %}
+        <div class="col">
+          <div class="card shadow-sm">
+{% if p.photo %}
+            <a data-fancybox="gallery" href="{{p.photo.url}}"><img style="width:100%; height: 300px; object-fit: cover;" src="{{p.photo.url}}"></a>
+{% endif %}
+            <div class="card-body">
+              <h5 class="card-title text-center">{{p.title|truncatechars:20}}</h5>
+              <div class="d-flex justify-content-between align-items-center">
+                <small class="text-muted">{{p.time_create|date:"d-m-Y H:i"}}</small>
+                <div class="btn-group">
+                <form action="{{ p.get_absolute_url }}">
+                    <button type="submit" class="btn btn-sm btn-outline-secondary">Удалить</button>
+                </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+{% endfor %}
+      </div>
+{% endblock %}

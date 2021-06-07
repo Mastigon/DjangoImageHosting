@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>{{title}}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+  </head>
+  <body>
+    
+    <header class="d-flex justify-content-center py-3">
+      <ul class="nav nav-pills">
+        {% for m in menu %}
+        <li class="nav-item"><a href="{% url m.url_name %}" class="nav-link {% if m.url == request.path %}active{% endif %}" aria-current="page">{{m.title}}</a></li>
+        {% endfor %}
+      </ul>
+    </header>
+
+    <main>
+      <div class="album py-5 bg-light" style="min-height: 500px">
+        <div class="container-md">
+
+          {% block content %}
+          {% endblock %}
+
+        </div>
+      </div>
+    </main>
+
+    <footer class="text-muted py-5">
+      <div class="container">
+        {% if request.path == '/' %}
+        <p class="float-end mb-1">
+          <a href="#">Back to top</a>
+        </p>
+        {% endif %}
+        <p class="mb-1"> Designed by Zhirnov I.</p>
+      </div>
+    </footer>
+      
+  </body>
+</html>
